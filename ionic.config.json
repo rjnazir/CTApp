@@ -1,0 +1,7 @@
+{
+  "name": "CTApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
