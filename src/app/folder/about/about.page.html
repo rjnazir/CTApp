@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">A propos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item [click]="">
+          <ion-label>{{information.societe}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{information.local}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{information.address}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="mail-unread-outline"></ion-icon>
+          <ion-label>&nbsp;{{information.boitep}}</ion-label>
+        </ion-item>
+        <ion-item href="{{information.weblink}}">
+          <ion-icon name="earth-outline"></ion-icon>
+          <ion-label>&nbsp;{{information.web}}</ion-label>
+        </ion-item>
+        <ion-item href="tel:{{information.phone}}">
+          <ion-icon name="call-outline"></ion-icon>
+          <ion-label>&nbsp;{{information.phone}}</ion-label>
+        </ion-item>
+        <ion-item href="mailto:{{information.email}}">
+          <ion-icon name="mail-outline"></ion-icon>
+          <ion-label>&nbsp;{{information.email}}</ion-label>
+        </ion-item>
+        <ion-item href="{{information.facelink}}">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <ion-label>&nbsp;{{information.facebook}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

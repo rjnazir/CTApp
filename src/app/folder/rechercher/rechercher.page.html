@@ -1,0 +1,202 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Rechercher</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card >
+    <ion-card-content>
+      <ion-item>
+        <ion-col size="8">
+          <ion-input type="text" placeholder="Imm. ou n° de série véhicule" [(ngModel)]="imm"></ion-input>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button (click)="onLoadCar()" color="primary">
+            <ion-icon name="search"></ion-icon>
+          </ion-button>
+          <ion-button (click)="onClearCar()" color="danger">
+            <!-- <ion-icon name="search"></ion-icon> -->
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-item>
+    </ion-card-content>
+
+    <div *ngIf="dataCar; then content">...</div>
+    <ng-template #content>
+      <ion-toolbar>
+
+        <ion-segment 
+        [(ngModel)]="segmentModel" 
+        (ionChange)="segmentChanged($event)">
+    
+          <ion-segment-button value="visite">
+            <!-- <ion-label>Visite</ion-label> -->
+            <ion-icon name="build-outline"></ion-icon>
+          </ion-segment-button>
+    
+          <ion-segment-button value="vehicule">
+            <!-- <ion-label>Véhicule</ion-label> -->
+            <ion-icon name="car-sport-outline"></ion-icon>
+          </ion-segment-button>
+    
+        </ion-segment>
+        
+      </ion-toolbar>
+  
+      <ion-card *ngIf="segmentModel === 'visite'">
+        <ion-card-header color="secondary">
+          <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
+          <!-- <ion-card-title>Renseignements visites</ion-card-title> -->
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Centre&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.ctr_nom}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Procès-verbal&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vst_num_pv}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date visite&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vst_created | date:'dd/MM/yyyy'}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date expiration&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vst_date_expiration | date:'dd/MM/yyyy'}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Type visite&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{(dataCar.vst_is_contre_visite)?((dataCar.vst_is_contre_visite)==0)?'Visite':'Contre visite':''}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Aptitude&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{(dataCar.vst_is_apte)?((dataCar.vst_is_apte==1)?'Apte':'Inapte'):''}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Anomalies&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vst_anomalies}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Vérificateur&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.nom_verificateur}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Secrétaire&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.usr_name}}"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card *ngIf="segmentModel === 'vehicule'">
+        <ion-card-header color="secondary">
+          <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
+          <!-- <ion-card-title>Renseignements visites</ion-card-title> -->
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Immatriculation&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_immatriculation}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Utilisation&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.ut_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Propiètaire&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_nom}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Profession&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_profession}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Adresse&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_adresse}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Commune&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_commune}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date de mise en service&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_mise_en_service | date:'dd/MM/yyyy'}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre de palce assis&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_nbr_assis}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre de palce debout&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_nbr_debout}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Marque&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.mrq_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Type&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vhc_type}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Numéro de série&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vhc_num_serie}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Numéro moteur&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vhc_num_moteur}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Carrosserie&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.crs_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Puissance&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.cg_puissance_admin}}&nbsp;CV"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Source d'énergie&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.sre_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Poid vide&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vhc_poids_vide}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Charge utile&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vhc_charge_utile}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Poid total&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.vhc_poids_total_charge}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Usage effectif&nbsp;:&nbsp;</ion-label>
+            <ion-input readonly value="{{dataCar.usg_libelle}}"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+    <div *ngIf="err; then message">...</div>
+    <ng-template #message>
+      <ion-card color="danger">
+        <ion-card-content class="text-align-center">
+          Véhicule et renseignements visite introuvables.
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+    
+  </ion-card>
+</ion-content>
