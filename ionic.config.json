@@ -1,7 +1,8 @@
 {
   "name": "CTApp",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
