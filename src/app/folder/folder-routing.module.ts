@@ -7,6 +7,18 @@ const routes: Routes = [
   {
     path: '',
     component: FolderPage
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'rechercher',
+    loadChildren: () => import('./rechercher/rechercher.module').then( m => m.RechercherPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   }
 ];
 

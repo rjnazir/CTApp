@@ -12,38 +12,58 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
+    // {
+    //   title: 'Inbox',
+    //   url: '/folder/Inbox',
+    //   icon: 'mail'
+    // },
+    // {
+    //   title: 'Outbox',
+    //   url: '/folder/Outbox',
+    //   icon: 'paper-plane'
+    // },
+    // {
+    //   title: 'Favorites',
+    //   url: '/folder/Favorites',
+    //   icon: 'heart'
+    // },
+    // {
+    //   title: 'Archived',
+    //   url: '/folder/Archived',
+    //   icon: 'archive'
+    // },
+    // {
+    //   title: 'Trash',
+    //   url: '/folder/Trash',
+    //   icon: 'trash'
+    // },
+    // {
+    //   title: 'Spam',
+    //   url: '/folder/Spam',
+    //   icon: 'warning'
+    // }
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Accueil',
+      url: 'folder/home/home',
+      icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Rechercher',
+      url: 'folder/rechercher/rechercher',
+      icon: 'search-circle'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'A propos',
+      url: 'folder/about/about',
+      icon: 'information-circle'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Quitter',
+      url: '',
+      icon: 'log-out'
     },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
