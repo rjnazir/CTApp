@@ -21,6 +21,7 @@ export class RechercherPage implements OnInit {
 
   onLoadCar(){
     this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
+    // this.httpClient.get("http://154.126.79.185:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
       .subscribe(data=>{
         this.dataCar=data[0];
         // console.log(data);

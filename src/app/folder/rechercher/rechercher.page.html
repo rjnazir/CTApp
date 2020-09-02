@@ -24,7 +24,6 @@
             <ion-icon name="search"></ion-icon>
           </ion-button>
           <ion-button (click)="onClearCar()" color="danger">
-            <!-- <ion-icon name="search"></ion-icon> -->
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
         </ion-col>
@@ -40,12 +39,10 @@
         (ionChange)="segmentChanged($event)">
     
           <ion-segment-button value="visite">
-            <!-- <ion-label>Visite</ion-label> -->
             <ion-icon name="build-outline"></ion-icon>
           </ion-segment-button>
     
           <ion-segment-button value="vehicule">
-            <!-- <ion-label>Véhicule</ion-label> -->
             <ion-icon name="car-sport-outline"></ion-icon>
           </ion-segment-button>
     
@@ -56,10 +53,14 @@
       <ion-card *ngIf="segmentModel === 'visite'">
         <ion-card-header color="secondary">
           <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
-          <!-- <ion-card-title>Renseignements visites</ion-card-title> -->
         </ion-card-header>
       
         <ion-card-content>
+          <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+            <ion-fab-button color="success">
+              <ion-icon name="chatbox"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
           <ion-item>
             <ion-label position="floating">Centre&nbsp;:&nbsp;</ion-label>
             <ion-input readonly value="{{dataCar.ctr_nom}}"></ion-input>
@@ -102,10 +103,14 @@
       <ion-card *ngIf="segmentModel === 'vehicule'">
         <ion-card-header color="secondary">
           <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
-          <!-- <ion-card-title>Renseignements visites</ion-card-title> -->
         </ion-card-header>
       
         <ion-card-content>
+          <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+            <ion-fab-button color="success">
+              <ion-icon name="chatbox"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
           <ion-item>
             <ion-label position="floating">Immatriculation&nbsp;:&nbsp;</ion-label>
             <ion-input readonly value="{{dataCar.cg_immatriculation}}"></ion-input>
