@@ -2,14 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'folder/Inbox',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
-    redirectTo: 'folder/home/home',
+    // redirectTo: 'folder/home/home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -28,6 +24,15 @@ const routes: Routes = [
     path: 'folder/rechercher',
     loadChildren: () => import('./folder/rechercher/rechercher.module').then( m => m.RechercherPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ export class RechercherPage implements OnInit {
 
   public imm:string;
   private dataCar: Object;
-  public err:string;
+  public erreur:string;
 
   segmentModel = "visite";
 
@@ -20,15 +20,14 @@ export class RechercherPage implements OnInit {
   }
 
   onLoadCar(){
-    this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
-    // this.httpClient.get("http://154.126.79.185:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
-      .subscribe(data=>{
-        this.dataCar=data[0];
-        // console.log(data);
-      }, err=>{
-        console.log(err);
-        // this.err="Véhicule et renseignements visite introuvables.";
-      })
+      this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
+                      .subscribe(data=>{
+                        this.dataCar=data[0];
+                        console.log(data[0]);
+                      },
+                      erreur=>{
+                        console.log(erreur);
+                      })
   }
 
   segmentChanged(event){
@@ -39,7 +38,7 @@ export class RechercherPage implements OnInit {
 
   onClearCar(){
     this.imm = "";
-    this.err = "";
+    this.erreur = "";
   }
 
 }

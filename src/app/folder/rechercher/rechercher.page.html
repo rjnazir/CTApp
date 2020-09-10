@@ -30,7 +30,7 @@
       </ion-item>
     </ion-card-content>
 
-    <div *ngIf="dataCar; then content">...</div>
+    <div *ngIf="dataCar; then content"></div>
     <ng-template #content>
       <ion-toolbar>
 
@@ -38,11 +38,13 @@
         [(ngModel)]="segmentModel" 
         (ionChange)="segmentChanged($event)">
     
-          <ion-segment-button value="visite">
+          <ion-segment-button value="visite" layout="icon-start">
+            <ion-label>Visite</ion-label>
             <ion-icon name="build-outline"></ion-icon>
           </ion-segment-button>
     
-          <ion-segment-button value="vehicule">
+          <ion-segment-button value="vehicule" layout="icon-start">
+            <ion-label>Véhicule</ion-label>
             <ion-icon name="car-sport-outline"></ion-icon>
           </ion-segment-button>
     
@@ -194,10 +196,10 @@
         </ion-card-content>
       </ion-card>
     </ng-template>
-    <div *ngIf="err; then message">...</div>
+    <div *ngIf="!dataCar; then message"></div>
     <ng-template #message>
       <ion-card color="danger">
-        <ion-card-content class="text-align-center">
+        <ion-card-content class="message">
           Véhicule et renseignements visite introuvables.
         </ion-card-content>
       </ion-card>
