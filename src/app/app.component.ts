@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { Routes, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -60,11 +60,11 @@ export class AppComponent implements OnInit {
       url: 'folder/about/about',
       icon: 'information-circle'
     },
-    {
-      title: 'Quitter',
-      url: '',
-      icon: 'log-out'
-    },
+    // {
+    //   title: 'Quitter',
+    //   url: '',
+    //   icon: 'log-out'
+    // },
   ];
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
@@ -80,15 +80,15 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.afAuth.authState.subscribe(auth => {
-        if (!auth) {
-          console.log('non connecté');
-          this.router.navigateByUrl('/login');
-        } else {
-          this.router.navigateByUrl('/folder/home/home');
-          console.log('Connecté: ' + auth.uid);
-        }
-      });
+      // this.afAuth.authState.subscribe(auth => {
+      //   if (!auth) {
+      //     console.log('non connecté');
+      //     this.router.navigateByUrl('/login');
+      //   } else {
+      //     this.router.navigateByUrl('/folder/home/home');
+      //     console.log('Connecté: ' + auth.uid);
+      //   }
+      // });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
@@ -106,5 +106,10 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  logout() {
+    this.afAuth.signOut();
+    this.router.navigateByUrl('/login');
   }
 }

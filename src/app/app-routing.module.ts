@@ -5,8 +5,16 @@ const routes: Routes = [
   {
     path: '',
     // redirectTo: 'folder/home/home',
-    redirectTo: 'login',
+    redirectTo: 'register',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'folder/:id',
@@ -23,16 +31,7 @@ const routes: Routes = [
   {
     path: 'folder/rechercher',
     loadChildren: () => import('./folder/rechercher/rechercher.module').then( m => m.RechercherPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-
+  }
 ];
 
 @NgModule({
