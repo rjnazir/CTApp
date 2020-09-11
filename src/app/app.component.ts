@@ -15,36 +15,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
-    // {
-    //   title: 'Inbox',
-    //   url: '/folder/Inbox',
-    //   icon: 'mail'
-    // },
-    // {
-    //   title: 'Outbox',
-    //   url: '/folder/Outbox',
-    //   icon: 'paper-plane'
-    // },
-    // {
-    //   title: 'Favorites',
-    //   url: '/folder/Favorites',
-    //   icon: 'heart'
-    // },
-    // {
-    //   title: 'Archived',
-    //   url: '/folder/Archived',
-    //   icon: 'archive'
-    // },
-    // {
-    //   title: 'Trash',
-    //   url: '/folder/Trash',
-    //   icon: 'trash'
-    // },
-    // {
-    //   title: 'Spam',
-    //   url: '/folder/Spam',
-    //   icon: 'warning'
-    // }
     {
       title: 'Accueil',
       url: 'folder/home/home',
@@ -60,13 +30,7 @@ export class AppComponent implements OnInit {
       url: 'folder/about/about',
       icon: 'information-circle'
     },
-    // {
-    //   title: 'Quitter',
-    //   url: '',
-    //   icon: 'log-out'
-    // },
   ];
-  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
@@ -80,26 +44,10 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // this.afAuth.authState.subscribe(auth => {
-      //   if (!auth) {
-      //     console.log('non connecté');
-      //     this.router.navigateByUrl('/login');
-      //   } else {
-      //     this.router.navigateByUrl('/folder/home/home');
-      //     console.log('Connecté: ' + auth.uid);
-      //   }
-      // });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
-
-  // initializeApp() {
-  //   this.platform.ready().then(() => {
-  //     this.statusBar.styleDefault();
-  //     this.splashScreen.hide();
-  //   });
-  // }
 
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
