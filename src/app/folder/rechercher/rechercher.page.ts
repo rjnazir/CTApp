@@ -27,7 +27,7 @@ export class RechercherPage implements OnInit {
       this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
                       .subscribe(data=>{
                         this.dataCar=data[0];
-                        console.log(data[0]);
+                        console.log(this.dataCar);
                       },
                       erreur=>{
                         console.log(erreur);
@@ -46,6 +46,7 @@ export class RechercherPage implements OnInit {
   onClearCar(){
     this.imm = "";
     this.erreur = "";
+    this.dataCar = [];
   }
 
   async messageVhlNotExisting() {
