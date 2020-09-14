@@ -24,7 +24,6 @@ export class RechercherPage implements OnInit {
   }
 
   onLoadCar(){
-<<<<<<< HEAD
       this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
                       .subscribe(data=>{
                         this.dataCar=data[0];
@@ -36,16 +35,6 @@ export class RechercherPage implements OnInit {
                           this.messageVhlNotExisting();
                         }
                       })
-=======
-    this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
-      .subscribe(data=>{
-        this.dataCar=data[0];
-        // console.log(data);
-      }, err=>{
-        console.log(err);
-        // this.err="Véhicule et renseignements visite introuvables.";
-      })
->>>>>>> parent of 101777c... Modif pour Menu flottant
   }
 
   segmentChanged(event){
