@@ -2,7 +2,7 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" >
       <ion-content>
-        <ion-list id="inbox-list">
+        <ion-list lines="none" id="inbox-list">
           <ion-list-header>Menu</ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
@@ -11,9 +11,9 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle (click)='logout()'>
-            <ion-item color="danger">
-              <ion-icon slot="start" name="log-out"></ion-icon>
-              <ion-label>Se déconnecter</ion-label>
+            <ion-item>
+              <ion-icon color="danger" slot="start" name="log-out"></ion-icon>
+              <ion-label color="danger">Se déconnecter</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

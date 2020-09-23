@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
   ) {
     this.initializeApp();
   }
