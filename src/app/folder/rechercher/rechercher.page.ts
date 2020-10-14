@@ -24,13 +24,18 @@ export class RechercherPage implements OnInit {
   }
 
   onLoadCar(){
-      this.httpClient.get("http://154.126.60.58:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
-        .subscribe(data=>{
-          this.dataCar=data[0]
-          if(!this.dataCar){
-            this.messageVhlNotExisting();
+      this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
+      // this.httpClient.get("http://localhost/controles_techniques/www/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
+        .subscribe(
+          data =>{
+            this.dataCar = data ? data[0] : null
+            console.log(data)
+            data === null ? this.messageVhlNotExisting() : ''
+          },
+          erreur => {
+            console.log(erreur)
           }
-        })
+        )
   }
 
   segmentChanged(event){
@@ -48,10 +53,10 @@ export class RechercherPage implements OnInit {
   async messageVhlNotExisting() {
     const toast = await this.toastController.create({
       // header: 'Recherche infructueuse',
-      message: 'Véhicule et renseignements visite introuvables.',
+      message: 'Véhicule et renseignements visite introuvables. ',
       // duration: 2000,
       position: 'middle',
-      color: 'warning',
+      color: 'dark',
       buttons: [
         {
           text: 'OK',
