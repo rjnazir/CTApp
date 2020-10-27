@@ -10,7 +10,7 @@ import { ToastController } from '@ionic/angular';
 export class RechercherPage implements OnInit {
 
   public imm: string;
-  public dataCar: Object;
+  public dataCar: any = {};
   public erreur: string;
 
   segmentModel = "visite";
@@ -25,6 +25,7 @@ export class RechercherPage implements OnInit {
 
   onLoadCar(){
       this.httpClient.get("http://192.168.88.254:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
+      // this.httpClient.get("http://154.126.60.58:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
       // this.httpClient.get("http://localhost/controles_techniques/www/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
         .subscribe(
           data =>{
@@ -56,13 +57,14 @@ export class RechercherPage implements OnInit {
       message: 'Véhicule et renseignements visite introuvables. ',
       // duration: 2000,
       position: 'middle',
-      color: 'dark',
+      color: 'warning',
       buttons: [
         {
           text: 'OK',
           role: 'cancel',
           // cssClass: 'ligth',
           handler: () => {
+            this.imm == "";
             console.log('Cancel clicked');
           }
         }
