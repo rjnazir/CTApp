@@ -15,71 +15,175 @@
 <ion-content>
   <ion-card >
     <ion-card-content>
-      <ion-list lines="full">
-        <ion-item lines="none">
-          <ion-row>
-            <ion-col size="8">
-              <ion-input type="text" placeholder="Imm. ou n° de série véhicule" [(ngModel)]="imm"></ion-input>
-            </ion-col>
-            <ion-col size="4">
-              <ion-row >
-                <ion-col size="6">
-                  <ion-button (click)="onLoadCar()" color="primary">
-                    <ion-icon name="search"></ion-icon>
-                  </ion-button>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-button (click)="onClearCar()" color="danger">
-                    <ion-icon name="trash-outline"></ion-icon>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-        </ion-item>        
-      </ion-list>
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6" class="ion-col-align-center">
+            <ion-item>
+              <ion-label position="floating">Imm. ou n° de série véhicule :</ion-label>
+              <ion-input type="text" [(ngModel)]="imm"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3" class="ion-align-self-center">
+            <ion-button (click)="onLoadCar()" color="primary">
+              <ion-icon name="search"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3" class="ion-align-self-center">
+            <ion-button (click)="onClearCar()" color="danger">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-card class="card-no-border" *ngFor="let item of data">
+        <ion-toolbar>
+          <ion-segment [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="visite" layout="icon-start">
+              <ion-label>Visite</ion-label>
+              <ion-icon name="build-outline"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="vehicule" layout="icon-start">
+              <ion-label>Véhicule</ion-label>
+              <ion-icon name="car-sport-outline"></ion-icon>
+            </ion-segment-button>
+          </ion-segment>   
+        </ion-toolbar>
+
+        <ion-card-header color="secondary" *ngIf="segmentModel === 'visite'">
+          <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content *ngIf="segmentModel === 'visite'">
+          <ion-item>
+            <ion-label position="floating">Centre : </ion-label>
+            <ion-input readonly value="{{item.ctr_nom}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Procès-verbal : </ion-label>
+            <ion-input readonly value="{{item.vst_num_pv}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date visite : </ion-label>
+            <ion-input readonly value="{{item.vst_created | date:'dd/MM/yyyy'}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date expiration : </ion-label>
+            <ion-input readonly value="{{item.vst_date_expiration | date:'dd/MM/yyyy'}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Type visite : </ion-label>
+            <ion-input readonly value="{{(item.vst_is_contre_visite)?((item.vst_is_contre_visite)==0)?'Visite':'Contre visite':''}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Aptitude : </ion-label>
+            <ion-input readonly value="{{(item.vst_is_apte)?((item.vst_is_apte==1)?'Apte':'Inapte'):''}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Anomalies : </ion-label>
+            <ion-textarea readonly value="{{item.vst_anomalies}}"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Vérificateur : </ion-label>
+            <ion-input readonly value="{{item.nom_verificateur}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Secrétaire : </ion-label>
+            <ion-input readonly value="{{item.usr_name}}"></ion-input>
+          </ion-item>
+        </ion-card-content>
+        <ion-card-header color="secondary" *ngIf="segmentModel === 'vehicule'">
+          <ion-card-subtitle>Renseignements véhicule</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content *ngIf="segmentModel === 'vehicule'">
+          <ion-item>
+            <ion-label position="floating">Immatriculation : </ion-label>
+            <ion-input readonly value="{{item.cg_immatriculation}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Utilisation : </ion-label>
+            <ion-input readonly value="{{item.ut_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Propiètaire : </ion-label>
+            <ion-input readonly value="{{item.cg_nom}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Profession : </ion-label>
+            <ion-input readonly value="{{item.cg_profession}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Adresse : </ion-label>
+            <ion-input readonly value="{{item.cg_adresse}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Téléphone : </ion-label>
+            <ion-input readonly value="{{item.cg_prenom}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Commune : </ion-label>
+            <ion-input readonly value="{{item.cg_commune}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Date de mise en service : </ion-label>
+            <ion-input readonly value="{{item.cg_mise_en_service | date:'dd/MM/yyyy'}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre de palce assis : </ion-label>
+            <ion-input readonly value="{{item.cg_nbr_assis}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre de palce debout : </ion-label>
+            <ion-input readonly value="{{item.cg_nbr_debout}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Marque : </ion-label>
+            <ion-input readonly value="{{item.mrq_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Type : </ion-label>
+            <ion-input readonly value="{{item.vhc_type}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Numéro de série : </ion-label>
+            <ion-input readonly value="{{item.vhc_num_serie}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Numéro moteur : </ion-label>
+            <ion-input readonly value="{{item.vhc_num_moteur}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Carrosserie : </ion-label>
+            <ion-input readonly value="{{item.crs_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Genre : </ion-label>
+            <ion-input readonly value="{{item.gr_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Source d'énergie : </ion-label>
+            <ion-input readonly value="{{item.sre_libelle}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Puissance : </ion-label>
+            <ion-input readonly value="{{item.cg_puissance_admin}} CV"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Poid vide : </ion-label>
+            <ion-input readonly value="{{item.vhc_poids_vide}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Charge utile : </ion-label>
+            <ion-input readonly value="{{item.vhc_charge_utile}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Poid total : </ion-label>
+            <ion-input readonly value="{{item.vhc_poids_total_charge}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Usage effectif : </ion-label>
+            <ion-input readonly value="{{item.usg_libelle}}"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
-    
-    <!-- <ion-card *ngIf="dataCar"> -->
-    <ion-card>
-      <ion-toolbar>
-
-        <ion-segment  [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
-    
-          <ion-segment-button value="visite" layout="icon-start">
-            <ion-label>Visite</ion-label>
-            <ion-icon name="build-outline"></ion-icon>
-          </ion-segment-button>
-    
-          <ion-segment-button value="vehicule" layout="icon-start">
-            <ion-label>Véhicule</ion-label>
-            <ion-icon name="car-sport-outline"></ion-icon>
-          </ion-segment-button>
-    
-        </ion-segment>
-        
-      </ion-toolbar>
-
-      <ion-card-header  color="secondary" *ngIf="segmentModel === 'visite'">
-        <ion-card-title>Renseignements visites</ion-card-title>
-      </ion-card-header>
-      <ion-card-content *ngIf="segmentModel === 'visite'">
-        <ion-item>
-          <ion-label>Centre : </ion-label>
-          <ion-input readonly value="{{dataCar?.ctr_nom}}"></ion-input>
-        </ion-item>
-      </ion-card-content>
-
-      <ion-card-header  color="secondary" *ngIf="segmentModel === 'vehicule'">
-        <ion-card-title>Renseignements véhicule</ion-card-title>
-      </ion-card-header>
-      <ion-card-content *ngIf="segmentModel === 'vehicule'">
-        <ion-item>
-          <ion-label>Immatriculation : </ion-label>
-          <ion-input readonly value="{{dataCar?.cg_immatriculation}}"></ion-input>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-    
   </ion-card>
 </ion-content>

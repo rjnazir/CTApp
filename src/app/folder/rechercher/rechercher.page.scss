@@ -5,9 +5,13 @@ ion-item {
     margin-left: 0.25em;
 }
 
+ion-label {
+    font-style: italic;
+}
+
 ion-input {
     font-weight: bold;
-    font-size: 1.0em;
+    font-size: 0.9em;
 }
 
 .message {
@@ -16,5 +20,24 @@ ion-input {
 
 ion-textarea {
     font-weight: bold;
-    font-size: 1.0em;
+    font-size: 0.9em;
+}
+.ion-col-align-center {
+    text-align: center;
+}
+
+/* DOES NOT WORK - not specific enough */
+.alert-wrapper {
+    // background: #e5e5e5;
+    background:red;
+}
+
+/* Works - pass "my-custom-class" in cssClass to increase specificity */
+.my-custom-class .alert-wrapper {
+    // background: #e5e5e5;
+    background:red;
+}
+
+.card-no-border{
+    box-shadow:none !important
 }

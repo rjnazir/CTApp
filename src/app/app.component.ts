@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { ToastController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -32,12 +32,18 @@ export class AppComponent implements OnInit {
     },
   ];
 
+  //code for exit app
+  // set up hardware back button event.
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public afAuth: AngularFireAuth,
     private router: Router,
+    private toastController: ToastController,
   ) {
     this.initializeApp();
   }
@@ -60,4 +66,5 @@ export class AppComponent implements OnInit {
     this.afAuth.signOut();
     this.router.navigateByUrl('/login');
   }
+
 }

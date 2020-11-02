@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { app, auth } from 'firebase/app';
 import { ToastController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-import { BackButtonEvent } from '@ionic/core';
+// import { BackButtonEvent } from '@ionic/core';
 import { Plugins } from '@capacitor/core';
 const { App } = Plugins;
-
 
 @Component({
   selector: 'app-login',
@@ -25,8 +24,10 @@ export class LoginPage implements OnInit {
     public afAuth: AngularFireAuth,
     public toastController: ToastController,
     public platform: Platform,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {
+    this.platform.platforms();
+  }
 
   ngOnInit() {
   }
@@ -62,15 +63,7 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  closeApp(){
-    const routerEl = document.querySelector('ion-router');
-    document.addEventListener('ionBackButton', (ev: BackButtonEvent) => {
-      ev.detail.register(-1, () => {
-        const path = window.location.pathname;
-        if (path === routerEl.root) {
-          App.exitApp();
-        }
-      });
-    });
-  }
+  // closeApp(){
+
+  // }
 }
