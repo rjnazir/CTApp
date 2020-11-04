@@ -10,7 +10,7 @@ import { ToastController, AlertController, LoadingController } from '@ionic/angu
 export class RechercherPage implements OnInit {
 
   public imm: string;
-  private data : object = [];
+  public data : object = [];
   public erreur: string;
 
   segmentModel = "visite";
