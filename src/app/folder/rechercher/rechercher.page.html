@@ -35,7 +35,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-card class="card-no-border" *ngFor="let item of data">
+      <ion-card class="card-no-border" *ngFor="let item of data" >
         <ion-toolbar>
           <ion-segment [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
             <ion-segment-button value="visite" layout="icon-start">
@@ -53,6 +53,11 @@
           <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content *ngIf="segmentModel === 'visite'">
+          <!-- <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+            <ion-fab-button color="success" (click)="sendSMSData()" >
+              <ion-icon name="share-social-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab> -->
           <ion-item>
             <ion-label position="floating">Centre : </ion-label>
             <ion-input readonly value="{{item.ctr_nom}}"></ion-input>
@@ -94,6 +99,11 @@
           <ion-card-subtitle>Renseignements véhicule</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content *ngIf="segmentModel === 'vehicule'">
+          <!-- <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+            <ion-fab-button color="success" (click)="sendSMSData()" >
+              <ion-icon name="share-social-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab> -->
           <ion-item>
             <ion-label position="floating">Immatriculation : </ion-label>
             <ion-input readonly value="{{item.cg_immatriculation}}"></ion-input>

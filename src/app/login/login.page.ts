@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  // closeApp(){
-
-  // }
+  closeApp(){
+    // navigator.app.exitApp();
+  }
 }

@@ -27,7 +27,7 @@ export class RechercherPage implements OnInit {
 
   onLoadCar(){
     if(this.imm != null){
-      this.httpClient.get("http://154.126.60.58:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
+      this.httpClient.get("https://dgsrmada.com:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
         .subscribe(
           data =>{
             this.presentLoading();
@@ -59,7 +59,7 @@ export class RechercherPage implements OnInit {
   async AlertVhlNotExisting() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Recherche infructueuse',
+      header: 'Message d\'erreur',
       message: '<center>Véhicule et renseignements visite introuvables.</center>',
       buttons: [
         {
@@ -79,7 +79,6 @@ export class RechercherPage implements OnInit {
   async AlertImmVide(){
     const alert =await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Immatriculation vide',
       message:'<center>Veuillez entrer une immatriculation svp!</center>',
       buttons: [
         {
@@ -98,7 +97,7 @@ export class RechercherPage implements OnInit {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Veuillez patienter...',
-      duration: 1000
+      duration: 500
     });
     await loading.present();
 
