@@ -4,10 +4,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { app, auth } from 'firebase/app';
 import { ToastController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
-
-// import { BackButtonEvent } from '@ionic/core';
+import { Capacitor } from '@capacitor/core';
 import { Plugins } from '@capacitor/core';
-const { App } = Plugins;
+const App = Plugins;
 
 @Component({
   selector: 'app-login',
@@ -17,14 +16,14 @@ const { App } = Plugins;
 
 export class LoginPage implements OnInit {
 
-  username: string = ""
-  password: string = ""
+  username: string = "";
+  password: string = "";
 
   constructor(
     public afAuth: AngularFireAuth,
     public toastController: ToastController,
     public platform: Platform,
-    private router: Router,
+    private router: Router
   ) {
     this.platform.platforms();
   }
@@ -63,7 +62,12 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  closeApp(){
-    // navigator.app.exitApp();
+  closeApp (){
+    console.log("Quitter l'application");
+
+    if (this.router.url === '/login') {
+      console.log(this.router.url);
+      App.Browser.close();
+    }
   }
 }

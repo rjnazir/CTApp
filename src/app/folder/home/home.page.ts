@@ -17,8 +17,7 @@ export class HomePage implements OnInit {
 
   constructor(
     public afAuth: AngularFireAuth,
-    private router: Router
-
+    private router: Router,
   ) { }
 
   ngOnInit() {

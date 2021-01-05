@@ -1,8 +1,8 @@
 {
   "name": "ctapp",
   "version": "0.0.2",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Service Informatique et Télécommunications (DGSR/DT/SIT)",
+  "homepage": "https://dgsrmada.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -30,6 +30,7 @@
     "cordova-plugin-exit": "^1.0.3",
     "cordova-plugin-networkinterface": "^2.0.0",
     "firebase": "^7.19.1",
+    "ionic-angular": "^3.9.10",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -70,6 +71,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "kr.co.joycorp.cordova.exitapp": "^1.0.2",
     "protractor": "~5.4.3",
     "rm": "^0.1.8",
     "ts-node": "~8.3.0",

@@ -7,7 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -33,18 +32,12 @@ export class AppComponent implements OnInit {
     },
   ];
 
-  //code for exit app
-  // set up hardware back button event.
-  lastTimeBackPress = 0;
-  timePeriodToExit = 2000;
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public afAuth: AngularFireAuth,
     private router: Router,
-    private toastController: ToastController,
   ) {
     this.initializeApp();
   }
