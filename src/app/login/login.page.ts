@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { app, auth } from 'firebase/app';
-import { ToastController, Platform } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Capacitor } from '@capacitor/core';
 import { Plugins } from '@capacitor/core';
 const App = Plugins;
+
+import { AlertController, Platform } from 'ionic-angular';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +20,14 @@ export class LoginPage implements OnInit {
 
   username: string = "";
   password: string = "";
+  alertShown: boolean = true;
 
   constructor(
     public afAuth: AngularFireAuth,
     public toastController: ToastController,
     public platform: Platform,
-    private router: Router
+    private router: Router,
+    public alertCtrl: AlertController 
   ) {
     this.platform.platforms();
   }
@@ -62,12 +66,38 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
+  presentConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Exit',
+      message: 'Do you want Exit?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            this.alertShown=false;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Yes clicked');
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+     alert.present().then(()=>{
+      this.alertShown=true;
+    });
+  }
+
   closeApp (){
     console.log("Quitter l'application");
-
     if (this.router.url === '/login') {
       console.log(this.router.url);
-      App.Browser.close();
+      this.presentConfirm();
     }
   }
 }
