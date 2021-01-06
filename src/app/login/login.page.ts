@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { app, auth } from 'firebase/app';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Capacitor } from '@capacitor/core';
 import { Plugins } from '@capacitor/core';
 const App = Plugins;
 
-import { AlertController, Platform } from 'ionic-angular';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +14,8 @@ import { AlertController, Platform } from 'ionic-angular';
   styleUrls: ['./login.page.scss'],
 })
 
-export class LoginPage implements OnInit {
-
+export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
+  backButtonSubscription; 
   username: string = "";
   password: string = "";
   alertShown: boolean = true;
@@ -27,12 +25,21 @@ export class LoginPage implements OnInit {
     public toastController: ToastController,
     public platform: Platform,
     private router: Router,
-    public alertCtrl: AlertController 
   ) {
     this.platform.platforms();
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+  }
+
+  ngOnDestroy() {
+    this.backButtonSubscription.unsubscribe();
   }
 
   async login (){
@@ -66,38 +73,38 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  presentConfirm() {
-    let alert = this.alertCtrl.create({
-      title: 'Confirm Exit',
-      message: 'Do you want Exit?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-            this.alertShown=false;
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            console.log('Yes clicked');
-            this.platform.exitApp();
-          }
-        }
-      ]
-    });
-     alert.present().then(()=>{
-      this.alertShown=true;
-    });
-  }
+  // presentConfirm() {
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Confirm Exit',
+  //     message: 'Do you want Exit?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         handler: () => {
+  //           console.log('Cancel clicked');
+  //           this.alertShown=false;
+  //         }
+  //       },
+  //       {
+  //         text: 'Yes',
+  //         handler: () => {
+  //           console.log('Yes clicked');
+  //           this.platform.exitApp();
+  //         }
+  //       }
+  //     ]
+  //   });
+  //    alert.present().then(()=>{
+  //     this.alertShown=true;
+  //   });
+  // }
 
-  closeApp (){
-    console.log("Quitter l'application");
-    if (this.router.url === '/login') {
-      console.log(this.router.url);
-      this.presentConfirm();
-    }
-  }
+  // closeApp (){
+  //   console.log("Quitter l'application");
+  //   if (this.router.url === '/login') {
+  //     console.log(this.router.url);
+  //     this.presentConfirm();
+  //   }
+  // }
 }
