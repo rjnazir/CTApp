@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { app, auth } from 'firebase/app';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Plugins } from '@capacitor/core';
-const App = Plugins;
 
 import { Platform } from '@ionic/angular';
 
@@ -25,6 +23,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     public toastController: ToastController,
     public platform: Platform,
     private router: Router,
+    private alertCtrl : AlertController,
   ) {
     this.platform.platforms();
   }
@@ -73,38 +72,37 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     toast.present();
   }
 
-  // presentConfirm() {
-  //   let alert = this.alertCtrl.create({
-  //     title: 'Confirm Exit',
-  //     message: 'Do you want Exit?',
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Cancel clicked');
-  //           this.alertShown=false;
-  //         }
-  //       },
-  //       {
-  //         text: 'Yes',
-  //         handler: () => {
-  //           console.log('Yes clicked');
-  //           this.platform.exitApp();
-  //         }
-  //       }
-  //     ]
-  //   });
-  //    alert.present().then(()=>{
-  //     this.alertShown=true;
-  //   });
-  // }
+  presentConfirm() {
+    this.alertCtrl.create({
+      header: 'Confirmation',
+      message: 'Voullez-vous quiiter l\'application?',
+      buttons: [
+        {
+          text: 'Non',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            this.alertShown=false;
+          }
+        },
+        {
+          text: 'Oui',
+          handler: () => {
+            console.log("navigator['app'].exitApp()");
+            navigator['app'].exitApp();
+          }
+        }
+      ]
+    }).then(res => {
+      res.present();
+    });
+  }
 
-  // closeApp (){
-  //   console.log("Quitter l'application");
-  //   if (this.router.url === '/login') {
-  //     console.log(this.router.url);
-  //     this.presentConfirm();
-  //   }
-  // }
+  closeApp (){
+    console.log("Quitter l'application");
+    if (this.router.url === '/login') {
+      console.log(this.router.url);
+      this.presentConfirm();
+    }
+  }
 }

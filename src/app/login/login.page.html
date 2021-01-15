@@ -2,8 +2,7 @@
   <ion-toolbar color="primary">
     <ion-title style="text-align: center;">Authetification</ion-title>
     <ion-buttons slot="end" color="light">
-      <ion-button (ngAfterViewInit)="backButton" >
-        <!--ion-label>Quitter</ion-label-->
+      <ion-button (click)="closeApp()" >
         <ion-icon slot="end" name="log-in-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,7 +12,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+      <ion-col size="12">
         <ion-list>
           <ion-item>
             <ion-label position="floating">Nom d'utilisateur :</ion-label>
@@ -27,15 +26,6 @@
             <ion-icon slot="start" name="person-outline"></ion-icon>
             Se connecter
           </ion-button>
-          <!-- <div class="text-center">
-            <p>
-              <ion-label>OU</ion-label>
-            </p>
-          </div>
-          <ion-button fill="solid" expand="block" routerLink="/register" color="success">
-            <ion-icon slot="start" name="person-add-outline"></ion-icon>
-            S'inscrire
-          </ion-button> -->
         </ion-list>
       </ion-col>
     </ion-row>
