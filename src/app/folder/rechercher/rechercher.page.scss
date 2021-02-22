@@ -1,3 +1,8 @@
+div {
+    padding: 0pt;
+    margin: 0pt;
+}
+
 ion-item {
     font-size: calc(0.6em + 0.6vw);
     text-align: justify;
@@ -7,13 +12,40 @@ ion-item {
 
 ion-item ion-label {
     font-style: italic;
-    font-size: calc(1em + 1vw)
+    font-size: calc(0.75em + 0.75vw)
+}
+
+ion-segment ion-segment-button ion-label.titre {
+    font-weight: bold;
+    font-size:  calc(1em + 1vw);
+    font-family: "Arial, Helvetica, sans-serif";
 }
 
 ion-input {
     font-weight: bold;
     // font-size: 0.9em;
     font-size: calc(0.7em + 0.7vw)
+}
+
+div.rgts {
+    border-bottom: solid 1px gray;
+}
+div.imm {
+    border-bottom: solid 1px gray;
+    margin: unit($number: 0);
+    padding: unit($number: 0);
+}
+
+div ion-label {
+    font-style: italic;
+    font-size: calc(0.60em + 0.60vw);
+    color:gray;
+}
+
+p {
+    font-weight: bold;
+    font-size: calc(0.65em + 0.65vw);
+    color: black;
 }
 
 .ion-align-items-center {
@@ -42,4 +74,17 @@ ion-textarea {
 
 .card-no-border{
     box-shadow:none !important
+}
+
+.titre_vt {
+    margin: percentage($number: 10);
+    padding: percentage($number: 10);
+    border-radius: percentage($number: 2);
+    border-color: deepskyblue;
+}
+.titre_vhl {
+    margin: percentage($number: 10);
+    padding: percentage($number: 10);
+    border-radius: percentage($number: 2);
+    border-color:darkturquoise;
 }
