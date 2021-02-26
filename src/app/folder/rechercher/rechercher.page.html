@@ -59,11 +59,11 @@
                         <ion-card-subtitle>Renseignements visites</ion-card-subtitle>
                       </ion-card-header>
                       <ion-card-content *ngIf="segmentModel === 'visite'">
-                        <ion-fab vertical="top" horizontal="end" slot="fixed">
+                        <!-- <ion-fab vertical="top" horizontal="end" slot="fixed">
                           <ion-fab-button color="success" >
                             <ion-icon name="paper-plane-outline"></ion-icon>
                           </ion-fab-button>
-                        </ion-fab>
+                        </ion-fab> -->
                         <div class="rgts">
                           <ion-label position="floating">Centre :</ion-label><br/>
                           <p>{{item.ctr_nom}}</p>
@@ -105,11 +105,11 @@
                         <ion-card-subtitle>Renseignements véhicule</ion-card-subtitle>
                       </ion-card-header>
                       <ion-card-content *ngIf="segmentModel === 'vehicule'">
-                        <ion-fab vertical="top" horizontal="end" slot="fixed">
+                        <!-- <ion-fab vertical="top" horizontal="end" slot="fixed">
                           <ion-fab-button color="success">
                             <ion-icon name="paper-plane-outline"></ion-icon>
                           </ion-fab-button>
-                        </ion-fab>
+                        </ion-fab> -->
                         <div class="rgts">
                           <ion-label position="floating">Immatriculation : </ion-label><br>
                           <p readonly>{{item.cg_immatriculation}}</p>
@@ -210,3 +210,9 @@
     </ion-grid>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark" style="text-align: center; font-size: small;">
+    Copyright &copy; DGST/DT/SIT FEV 2021
+  </ion-toolbar>
+</ion-footer>

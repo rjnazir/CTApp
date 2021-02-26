@@ -27,10 +27,10 @@ export class RechercherPage implements OnInit {
 
   onLoadCar(){
     if(this.imm != null){
+      this.presentLoading();
       this.httpClient.get("https://dgsrmada.com:2053/index.php/controles_techniques/one_visite/?IMM="+this.imm+"")
         .subscribe(
           data =>{
-            this.presentLoading();
             this.data = data;
             console.log(data);
             if(data === null) this.AlertVhlNotExisting()
@@ -97,7 +97,7 @@ export class RechercherPage implements OnInit {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Veuillez patienter...',
-      duration: 500
+      duration: 2000
     });
     await loading.present();
 
