@@ -97,7 +97,7 @@ export class RechercherPage implements OnInit {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Veuillez patienter...',
-      duration: 4000
+      duration: 5000
     });
     await loading.present();
 
