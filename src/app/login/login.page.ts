@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { app, auth } from 'firebase/app';
+// import { app, auth } from 'firebase/app';
+import app from 'firebase/app';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
